@@ -429,13 +429,13 @@ const Home = () => {
                       {ox?.balance}{" "}
                     </p>
                   ) : (
-                    <div className="w-[80px] ">
+                    <div className="w-[200px] ">
                       <input
                         onChange={OnChangeBlance}
                         className=" w-full rounded-lg text-center text-[30px] "
                         type="number"
                       />
-                      <div className="w-[80px] flex items-center justify-between absolute text-[40px] h-[40px] ">
+                      <div className="w-[200px] flex items-center justify-between absolute text-[40px] h-[40px] ">
                         <button
                           onClick={MinusBL}
                           className="text-[55px] active:scale-125 transition-all  "
