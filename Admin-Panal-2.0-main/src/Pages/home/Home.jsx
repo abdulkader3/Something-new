@@ -257,7 +257,7 @@ const Home = () => {
   // notify
 
   // user profile   ====================================================👈😑
-  const [userProfile, setUserProfile] = useState(true);
+  const [userProfile, setUserProfile] = useState(false);
   const flipUserState = () => {
     setUserProfile(!userProfile);
   };

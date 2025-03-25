@@ -127,8 +127,22 @@ const Home = () => {
   const [or, yes] = useState([]);
   const [lock, setlock] = useState([]);
 
+  useEffect(() => {
+    const lockTimestamp = localStorage.getItem("lockTimestamp");
+    const currentTime = new Date().getTime();
+    const tenMinutes = 1 * 60 * 1000;
+
+    if (lock?.pin && (!lockTimestamp || currentTime - lockTimestamp > tenMinutes)) {
+      setFlipLock(true);
+    } else {
+      setFlipLock(false);
+    }
+  }, [lock]);
+
+  console.log(lock);
+
   // pin
-  const userLockPin = Number(lock.pin);
+  const userLockPin = Number(lock?.pin);
 
   const [ScreenPin, setScreenPin] = useState();
 
@@ -137,15 +151,17 @@ const Home = () => {
   };
   // pin
 
-  const [flipLock, setFlipLock] = useState(true);
+  const [flipLock, setFlipLock] = useState(false);
 
   const FuntionFlipLock = () => {
     if (ScreenPin == userLockPin) {
-      setFlipLock(!flipLock);
+      setFlipLock(false);
+      localStorage.setItem("lockTimestamp", new Date().getTime());
     } else {
       alert("pin is wrong");
     }
   };
+
   useEffect(() => {
     const starCountRef = ref(db, "ClintList/");
     onValue(starCountRef, (snapshot) => {
@@ -158,7 +174,7 @@ const Home = () => {
       });
       yes(box);
     });
-  }, [clintInfo.uid]);
+  }, [clintInfo?.uid]);
   useEffect(() => {
     or.map((er) => setlock(er));
   }, [or]);
@@ -169,22 +185,21 @@ const Home = () => {
     <>
       <div className="homePage">
         {flipLock && (
-          <div className=" w-full h-screen bg-white absolute z-50 flex items-center ">
-            <div className="w-full flex flex-col items-center justify-center ">
-              <p className="text-2xl mb-5 font-sans font-medium ">Please enter your PIN</p>
-              <div className=" mb-5 w-full h-[50px] border-[2px] border-[#000] rounded-xl ">
+          <div className="w-full h-screen bg-[#42f2ff] absolute z-50 flex items-center">
+            <div className="w-full flex flex-col items-center justify-center">
+              <p className="text-2xl mb-5 font-sans font-medium flex items-center justify-center gap-4">Please enter your PIN <span> <img className=" w-[20px] " src="https://www.freeiconspng.com/thumbs/key-icon/black-key-symbol-icon-6.png" alt="key" /> </span> </p>
+              <div className="mb-5 w-full h-[50px] border-[2px] border-[#000] rounded-xl">
                 <input
                   onChange={handleChange}
-                  className="w-full h-full rounded-xl text-[60px] text-center "
+                  className="w-full h-full rounded-xl text-[60px] text-center"
                   type="password"
                 />
               </div>
               <button
                 onClick={FuntionFlipLock}
-                className="w-full h-[40px] rounded-xl bg-black text-[#fff] text-[30px] flex justify-center items-center "
+                className="w-full h-[40px] rounded-xl bg-black text-[#fff] text-[30px] flex justify-center items-center"
               >
-                {" "}
-                <FaUnlock />{" "}
+                <FaUnlock />
               </button>
             </div>
           </div>
