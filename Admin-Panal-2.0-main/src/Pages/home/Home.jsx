@@ -331,6 +331,9 @@ const Home = () => {
   }, []);
   // user profile
 
+
+  console.log(allRequest)
+
   return (
     <>
       <div className="homePage">
@@ -383,7 +386,7 @@ const Home = () => {
             <button
               key={sob.key}
               onClick={() => nextPage(sob)}
-              className={`w-full text-[12px] md:text-[18px] h-[40px] border flex items-center justify-between p-3 rounded-xl ${
+              className={`w-full text-[11px] md:text-[18px] h-[40px] border flex items-center justify-between p-3 rounded-xl ${
                 sob.status ? "bg-[#16e21d4f]" : "bg-[#00000098]"
               } font-bold`}
             >
@@ -395,9 +398,8 @@ const Home = () => {
                 />
               </div>
               <p>{sob?.amount}.Tk</p>
+              <p>{sob?.clintName}</p>
               <p>{sob?.accountnumber}</p>
-
-              <p>{sob?.dateOf}</p>
             </button>
           ))}
         </div>
