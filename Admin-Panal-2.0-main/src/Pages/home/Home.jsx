@@ -278,10 +278,12 @@ const Home = () => {
   const MinusBL = () => {
     upnewBalance(RowmBlance);
     SetTowUpdateBlance(!oneUpdateBlance);
+    location.reload()
   };
   const plusBL = () => {
     upnewBalance(RowBlance);
     SetTowUpdateBlance(!oneUpdateBlance);
+    location.reload()
   };
 
   const OnChangeBlance = (e) => {
