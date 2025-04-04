@@ -1,0 +1,34 @@
+.transferMain{
+    @apply w-full h-screen overflow-y-scroll ;
+    scrollbar-width: none;
+
+}
+
+.OfferList{
+    @apply w-full h-[200px] overflow-y-scroll mt-10 ;
+    scrollbar-width: none;
+}
+
+.amount{
+    -webkit-appearance: none;
+    margin: 0;
+    
+}
+.amount{
+    -moz-appearance: textfield;
+
+}
+
+.optionManu{
+    @apply border w-[160px] py-1 rounded-lg px-1  flex items-center gap-2 justify-center
+}
+.optionManuor{
+    @apply border w-[100px] py-2 rounded-lg px-1  flex items-center gap-5 justify-center
+}
+.optionManuoB{
+    @apply border w-[80px] py-2 rounded-lg px-1  flex items-center gap-5 justify-center text-[10px]
+}
+
+.pinPlace::placeholder{
+    @apply text-[45px] 
+}
