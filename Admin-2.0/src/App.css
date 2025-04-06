@@ -1,0 +1,14 @@
+body{
+    @apply w-full h-screen ;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(
+    135deg,
+    #0c0f2a,  /* deep dark blue/black, like the background */
+    #1a213f,  /* a bit lighter blue for depth */
+    #3c4255,  /* grayish blue transition */
+    #ed6a22,  /* intense orange for the fiery energy */
+    #f6d77a   /* soft warm white to mimic glowing highlights */
+);
+}
