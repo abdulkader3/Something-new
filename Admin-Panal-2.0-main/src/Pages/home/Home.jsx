@@ -15,7 +15,6 @@ import { IoIosCloudDone } from "react-icons/io";
 import { FaHistory, FaUsersCog } from "react-icons/fa";
 import { clintData } from "../../Slice/SliceClint";
 import UserNavbar from "../../Components/User navbar/UserNavbar";
-
 const Home = () => {
   const clintInfo = useSelector((state) => state.info.userdata);
   const [one, tow] = useState(false);
@@ -278,12 +277,12 @@ const Home = () => {
   const MinusBL = () => {
     upnewBalance(RowmBlance);
     SetTowUpdateBlance(!oneUpdateBlance);
-    location.reload()
+    location.reload();
   };
   const plusBL = () => {
     upnewBalance(RowBlance);
     SetTowUpdateBlance(!oneUpdateBlance);
-    location.reload()
+    location.reload();
   };
 
   const OnChangeBlance = (e) => {
@@ -312,6 +311,76 @@ const Home = () => {
     return () => unsubscribe(); // Cleanup subscription on unmount
   }, [ClintUID, newBalance]);
 
+  // new function =========================================================👈😑
+
+  const [bro1, bro2] = useState(true);
+  
+  const [bro3, bro4] = useState([]);
+
+
+  const ClintUIDbro = bro3.uid;
+  
+
+  const bro = ( bro5) => {
+    bro2(!bro1);
+    bro4(bro5)
+  };
+
+  const broXBLOCK = ()=>{
+   
+      const clientRef = ref(db, "ClintList/" + ClintUIDbro);
+  
+      const unsubscribe = onValue(clientRef, (snapshot) => {
+        if (snapshot.exists()) {
+          update(clientRef, {
+            broX: false,
+          })
+            .then(() => {
+              console.log("Balance updated successfully!");
+            })
+            .catch((error) => {
+              console.error("Error updating balance:", error);
+            });
+        } else {
+          console.error("Client not found.");
+        }
+      });
+  
+      // Cleanup subscription on unmount
+ 
+
+    location.reload()
+  }
+
+
+  const broXUNBLOCK = ()=>{
+    
+      const clientRef = ref(db, "ClintList/" + ClintUIDbro);
+  
+      const unsubscribe = onValue(clientRef, (snapshot) => {
+        if (snapshot.exists()) {
+          update(clientRef, {
+            broX: true,
+          })
+            .then(() => {
+              console.log("Balance updated successfully!");
+            })
+            .catch((error) => {
+              console.error("Error updating balance:", error);
+            });
+        } else {
+          console.error("Client not found.");
+        }
+      });
+  
+
+
+    location.reload()
+  }
+
+
+  // new function =========================================================👈😑
+
   const [oneUpdateBlance, SetTowUpdateBlance] = useState(true);
 
   const FuntionUpdateBlanceButton = (OldBlance) => {
@@ -333,16 +402,12 @@ const Home = () => {
   }, []);
   // user profile
 
-
-  console.log(allRequest)
-
   return (
     <>
       <div className="homePage">
         <div className="w-full relative font-bold">
           {/* Navbar */}
-          <UserNavbar />
-
+          <UserNavbar /> 
           {/* Profile Page */}
           {one && (
             <div className="w-full h-screen bg-transparent ProfilePage absolute z-10">
@@ -413,19 +478,31 @@ const Home = () => {
           ></div>
 
           {/* ==========================================😑👈 */}
+
           {userProfile && (
             <div className="w-full overflow-y-scroll bg-white h-[400px] absolute flex flex-wrap gap-1 bottom-[60px] right-0 rounded ">
               {userData.map((ox, unik) => (
                 <div
                   key={unik}
-                  className="w-full flex justify-between items-center px-4  h-[50px] bg-blue-500 rounded-full "
+                  className="w-full flex justify-between items-center px-4  h-[50px] bg-blue-500 rounded-full relative "
                 >
                   <img
                     className="w-[50px]  rounded-full "
                     src={ox?.profile_picture}
                     alt=""
                   />
-                  <p>{ox.username ? ox.username : "Name"}</p>
+
+                  {bro1 ? (
+                    <p onClick={()=>bro(ox)}>{ox.username ? ox.username : "Name"}</p>
+                  ) : (
+                    <div
+                      className=" w-full h-full bg-[#746f6f] absolute flex gap-10 rounded-full"
+                    > 
+
+                    <div onClick={broXBLOCK} className="h-full bg-orange-600 flex justify-center items-center px-5 rounded-full font-semibold hover:scale-125 active:scale-90 transition-all "> block </div>
+                    <div onClick={broXUNBLOCK} className=" h-full bg-green-600 flex justify-center items-center px-5 rounded-full font-semibold hover:scale-125 active:scale-90 transition-all "> UnBlock</div>
+                     </div>
+                  )}
 
                   {oneUpdateBlance ? (
                     <p onClick={() => FuntionUpdateBlanceButton(ox)}>
