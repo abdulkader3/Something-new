@@ -453,7 +453,7 @@ const Home = () => {
             <button
               key={sob.key}
               onClick={() => nextPage(sob)}
-              className={`w-full text-[11px] md:text-[18px] h-[40px] border flex items-center justify-between p-3 rounded-xl ${
+              className={` mt-20 w-full text-[11px] md:text-[18px] h-[40px] border flex items-center justify-between p-3 rounded-xl ${
                 sob.status ? "bg-[#16e21d4f]" : "bg-[#00000098]"
               } font-bold`}
             >
@@ -516,16 +516,16 @@ const Home = () => {
                         className=" w-full rounded-lg text-center text-[30px] "
                         type="number"
                       />
-                      <div className="w-[200px] flex items-center justify-between absolute text-[40px] h-[40px] ">
+                      <div className="w-[200px] flex items-center pr-16 pt-5 justify-center gap-10 absolute text-[40px] h-[40px] ">
                         <button
                           onClick={MinusBL}
-                          className="text-[55px] active:scale-125 transition-all  "
+                          className=" bg-red-600 px-5 rounded-lg active:scale-125 transition-all  "
                         >
                           -
                         </button>
                         <button
                           onClick={plusBL}
-                          className=" active:scale-125 transition-all "
+                          className=" bg-green-500 px-5 rounded-lg active:scale-125 transition-all "
                         >
                           +
                         </button>
