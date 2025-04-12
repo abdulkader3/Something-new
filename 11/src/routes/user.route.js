@@ -15,12 +15,6 @@ router.route("/register").post(
             maxCount: 1
         }
     ]),
-    (req, res, next) => {
-        console.log("Files received:", req.files);
-        console.log("Body:", req.body);
-        next();
-      },
-    userRegister
-)
+    userRegister)
 
 export default router;

@@ -7,20 +7,12 @@ const router = Router()
 router.route("/register").post(
     upload.fields([
         {
-            name: 'avatar',
-            maxCount: 1
+            name: 'avatar', maxCount: 1
         },
         {
-            name: 'coverImage',
-            maxCount: 1
+            name: 'coverImage', maxCount: 1
         }
     ]),
-    (req, res, next) => {
-        console.log("Files received:", req.files);
-        console.log("Body:", req.body);
-        next();
-      },
-    userRegister
-)
+    userRegister)
 
 export default router;

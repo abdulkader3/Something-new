@@ -7,6 +7,7 @@ import {
     asyncHandlers
 } from "../utils/asyncHandlers.js";
 import { UploadOnCloudinary } from "../utils/Cloudinary.js";
+import path from 'path';
 
 const userRegister = asyncHandlers(async (req, res) => {
 
@@ -36,8 +37,12 @@ const userRegister = asyncHandlers(async (req, res) => {
 
 
     //Image local path
-    const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    // const avatarLocalPath = req.files?.avatar[0]?.path;
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
+
+    const avatarLocalPath = path.resolve(req.files?.avatar?.[0]?.path);
+const coverImageLocalPath = path.resolve(req.files?.coverImage?.[0]?.path);
     if(!avatarLocalPath){
         throw new ApiErrors(400, 'avatar is required')
     }
@@ -49,6 +54,7 @@ const userRegister = asyncHandlers(async (req, res) => {
     if(!avatar){
         throw new ApiErrors(400, 'avatar is required')
     }
+    console.log("✅ Upload complete, sending response...");
 
 
     //create user Object -entry in DB
@@ -76,6 +82,7 @@ const userRegister = asyncHandlers(async (req, res) => {
     return res.status(201).json(
         new ApiResponse(200, userCreated, 'user registered successfully')
     )
+    console.log("✅ Upload complete, sending response...");
 })
 export {
     userRegister
