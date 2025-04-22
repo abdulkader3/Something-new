@@ -5,23 +5,23 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { UploadOnCloudinary } from "../utils/Cloudinary.js";
 
 
-
 // login user access and refresh token
 const generateAccessTokenAndRefreshToken = async (userId)=>{
     try {
+        
         const user = await User.findById(userId);
 
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
 
         user.refreshToken = refreshToken;
-        await user.save({validateBeforeSave: false});
+        await user.save({validateBeforeSave: false });
 
         return {accessToken, refreshToken};
 
     } catch (error) {
         
-        throw new ApiError(500, 'something went wrong while generating user accessToken and refreshToken 😑')
+        throw new ApiError(500, 'something went wrong while generating refresh token and access token 😑')
     }
 };
 
@@ -32,7 +32,7 @@ const userRegister = asyncHandler( async (req, res)=>{
 
     // get user data from frontend
     const {userName,fullName,email,password} = req.body;
-    console.log(userName,fullName,email,password);
+    
 
     // Validation
     if([userName,fullName,email,password].some((fields)=> fields.trim()==='')){
@@ -96,24 +96,28 @@ const userRegister = asyncHandler( async (req, res)=>{
 });
 
 
-// user login
+
+// user login 
 const userLogin = asyncHandler( async (req, res)=>{
 
-
+    // get user login data
+    // email or user name
+    // find the user
+    // check password
+    // access and refresh token
+    // send cookies
 
     // get user login data
-    const { userName, email, password} = req.body;
-
-    
+    const {userName, email, password} = req.body;
 
     // email or username 
-    if(!userName && !email){
+    if(! (email || userName)){
         throw new ApiError(400, 'username or email is required')
     }
 
     // find the user
     const user = await User.findOne({
-        $or: [{userName}, {email}]
+        $or: [{email},{userName}]
     })
     if(!user){
         throw new ApiError(404, 'user not found')
@@ -125,11 +129,8 @@ const userLogin = asyncHandler( async (req, res)=>{
         throw new ApiError(400, 'Incorrect password')
     }
 
-    //access and refresh token
-
+    // access and refresh token
     const {accessToken, refreshToken} = await generateAccessTokenAndRefreshToken(user._id);
-
-
 
     const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
 
@@ -146,17 +147,20 @@ const userLogin = asyncHandler( async (req, res)=>{
     .json(
         new ApiResponse(
             200,
-        {
-            user: loggedInUser, accessToken, refreshToken
-        },
-        'user logged in successfully 🌸'
+            {
+                user: loggedInUser, accessToken, refreshToken
+            },
+            "User Logged In Successfully 🌸👉😊👈🌸"
         )
     )
+
 
 });
 
 
+
 // user logout
+
 const userLogout = asyncHandler( async (req, res)=>{
     // create middleware auth
 
@@ -183,8 +187,7 @@ const userLogout = asyncHandler( async (req, res)=>{
     .clearCookie('accessToken', options)
     .clearCookie('refreshToken', options)
     .json(new ApiResponse(200,{},"user logged Out ()👍"))
-});
-
+})
 
 
 
