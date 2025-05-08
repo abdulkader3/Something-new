@@ -12,6 +12,26 @@ const videoSchema = new mongoose.Schema({
         type: String
     }, owner: {
         type: String
+    },videoFile: {
+        type: String
+    }, category: {
+        type: String
+    }, duration: {
+        type: String
+    }, thumbnail: {
+        type: String
+    }, owner: {
+        type: String
+    },videoFile: {
+        type: String
+    }, category: {
+        type: String
+    }, duration: {
+        type: String
+    }, thumbnail: {
+        type: String
+    }, owner: {
+        type: String
     },
 },{timestamps: true})
 
