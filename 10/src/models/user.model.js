@@ -76,6 +76,77 @@ const userSchema = new mongoose.Schema({
     },
     coverImage: {
         type: String
+    },userName: {
+        type: String
+    },
+    fullName: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    avatar: {
+        type: String
+    },
+    coverImage: {
+        type: String
+    },
+    userName: {
+        type: String
+    },
+    fullName: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    avatar: {
+        type: String
+    },
+    coverImage: {
+        type: String
+    },
+    userName: {
+        type: String
+    },
+    fullName: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    avatar: {
+        type: String
+    },
+    coverImage: {
+        type: String
+    },
+    userName: {
+        type: String
+    },
+    fullName: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    avatar: {
+        type: String
+    },
+    coverImage: {
+        type: String
     },
 },{timestamps: true})
 
