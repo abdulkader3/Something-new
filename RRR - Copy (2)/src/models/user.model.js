@@ -45,6 +45,47 @@ const userSchema = new mongoose.Schema({
     },
     refreshToken: {
         type: String,
+    },
+    userName: {
+        type: String,
+        required: true,
+        lowercase: true,
+        time: true,
+        unique: true,
+        index: true
+    },
+    email: {
+        type: String,
+        required: true,
+        lowercase: true,
+        time: true,
+        unique: true,
+    },
+    fullName: {
+        type: String,
+        required: true,
+        lowercase: true,
+        time: true,
+        index: true
+    },
+    avatar: {
+        type: String, //url from cloudniry 
+        required: true
+    },
+    coverImage: {
+        type: String,
+
+    },
+    watchHistory: {
+        type: Schema.Types.ObjectId,
+        ref: "Video"
+    },
+    password: {
+        type: String,
+        required: [true, "password id required"],
+    },
+    refreshToken: {
+        type: String,
     }
 },{timestamps: true});
 
