@@ -22,6 +22,26 @@ const userSchema = new mongoose.Schema({
     watchHistory: {
         type: Schema.Types.ObjectId,
         ref: "Video"
+    },
+    userName: {
+        type: String,
+        required: true
+    },
+    fullName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    watchHistory: {
+        type: Schema.Types.ObjectId,
+        ref: "Video"
     }
 },{timestamps: true})
 
